@@ -1,0 +1,14 @@
+[{
+  "modid": "WindowedChat",
+  "name": "Windowed Chat",
+  "description": "Pops chat to a separate window.",
+  "version": "1.0",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["craftablescience"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}]
