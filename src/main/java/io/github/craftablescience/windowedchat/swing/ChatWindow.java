@@ -1,18 +1,12 @@
 package io.github.craftablescience.windowedchat.swing;
 
-import io.github.craftablescience.windowedchat.WindowedChat;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiConfirmOpenLink;
-import net.minecraft.client.gui.GuiYesNoCallback;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.event.ClickEvent;
-import org.lwjgl.opengl.Display;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
@@ -21,10 +15,34 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 
+import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+import javax.swing.ListSelectionModel;
+import javax.swing.WindowConstants;
+
+import org.lwjgl.opengl.Display;
+
+import io.github.craftablescience.windowedchat.WindowedChat;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.event.ClickEvent;
+
 
 public class ChatWindow extends JFrame {
 
-    private final DefaultListModel<JLabel> items;
+	private static final long serialVersionUID = -8877036744251716979L;
+	private final DefaultListModel<JLabel> items;
     private final JPanel dmList;
     private final JPanel settingsPanel;
     private final JTextField textbox;

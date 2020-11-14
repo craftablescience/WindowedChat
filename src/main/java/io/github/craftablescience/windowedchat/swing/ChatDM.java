@@ -1,19 +1,33 @@
 package io.github.craftablescience.windowedchat.swing;
 
-import net.minecraft.client.Minecraft;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.io.IOException;
 import java.io.InputStream;
+
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+
+import net.minecraft.client.Minecraft;
 
 
 public class ChatDM extends JPanel {
 
-    public final String player;
+	private static final long serialVersionUID = -6753176602675274022L;
+	public final String player;
     private final DefaultListModel<JLabel> items;
     private final Font font;
 
