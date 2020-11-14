@@ -29,7 +29,11 @@ public class PlayerHelper {
 	
 	public static ImageIcon loadImage(String playerName) {
 		ImageIcon steve = ImageAssets.getTexture("steve");
-		String uuid = player(playerName).getGameProfile().getId().toString().replace("-", "");
+		try {
+			String uuid = player(playerName).getGameProfile().getId().toString().replace("-", "");
+		} catch (Exception e) {
+			return steve;
+		}
 		if(WindowedChatConfig.avatarURL.equalsIgnoreCase("steve")) {
 			return steve;
 		} else {
