@@ -29,12 +29,13 @@ public class PlayerHelper {
 	
 	public static ImageIcon loadImage(String playerName) {
 		ImageIcon steve = ImageAssets.getTexture("steve");
+		String uuid;
 		try {
-			String uuid = player(playerName).getGameProfile().getId().toString().replace("-", "");
+			uuid = player(playerName).getGameProfile().getId().toString().replace("-", "");
 		} catch (Exception e) {
 			return steve;
 		}
-		if(WindowedChatConfig.avatarURL.equalsIgnoreCase("steve")) {
+		if (WindowedChatConfig.avatarURL.equalsIgnoreCase("steve")) {
 			return steve;
 		} else {
 			if(ImageAssets.isCached(uuid)) {

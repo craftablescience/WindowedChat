@@ -13,5 +13,5 @@ public class WindowedChatConfig {
 			+ "\t2D:   https://crafatar.com/avatars/%uuid%?overlay\n"
 			+ "\tNone: steve")
 	@Config.RequiresWorldRestart
-	public static String avatarURL = "https://crafatar.com/renders/head/%uuid%?overlay?size=32";
+	public static String avatarURL = "https://crafatar.com/renders/head/%uuid%?size=32&default=MHF_Steve&overlay";
 }

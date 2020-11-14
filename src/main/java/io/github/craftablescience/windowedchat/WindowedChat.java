@@ -24,20 +24,22 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 
-@Mod(modid = WindowedChat.MODID, name = WindowedChat.NAME, version = WindowedChat.VERSION, clientSideOnly = true)
+@Mod(modid = WindowedChat.MODID, name = WindowedChat.NAME, version = WindowedChat.VERSION)
 public class WindowedChat {
 	public static final String MODID = "windowedchat";
 	public static final String NAME = "Windowed Chat";
-	public static final String VERSION = "1.0";
+	public static final String VERSION = "1.1";
 
 	private static Path imagesPath = Paths.get(Minecraft.getMinecraft().mcDataDir + "/cachedImages");
 	public static String imgPath = imagesPath.toFile() + File.separator;
 	public static ChatWindow chatWindow;
 	public static Logger logger;
 
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		logger = event.getModLog();
+
 		try {
 			if(!Files.exists(imagesPath)) {
 				Files.createDirectory(imagesPath);
@@ -46,7 +48,7 @@ public class WindowedChat {
 			WindowedChat.logger.error("Failed to create ImageCache Directory");
 		}
 		
-		MinecraftForge.EVENT_BUS.register(WindowedChatEvents.class);
+		MinecraftForge.EVENT_BUS.register(new WindowedChatEvents());
 	}
 
 	@EventHandler

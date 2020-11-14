@@ -1,5 +1,5 @@
 [{
-  "modid": "WindowedChat",
+  "modid": "windowedchat",
   "name": "Windowed Chat",
   "description": "Pops chat to a separate window.",
   "version": "1.1",

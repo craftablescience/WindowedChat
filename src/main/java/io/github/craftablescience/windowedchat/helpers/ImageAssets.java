@@ -44,8 +44,6 @@ public class ImageAssets {
 		return textures.containsKey(name);
 	}
 	
-	/////////////////////////////////////////////////////////
-	
 	public static void addTextureFromURL(String uuid, URL path) {
 		uuid = uuid.toLowerCase();
 		try {

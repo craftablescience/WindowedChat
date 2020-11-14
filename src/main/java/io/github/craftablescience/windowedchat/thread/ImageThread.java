@@ -21,7 +21,7 @@ public class ImageThread extends Thread {
 	public ImageThread(String file, URL url) {
 		this.file = file;
 		this.url = url;
-		setName("Image Thread");
+		setName("Image DL Thread");
 		setDaemon(true);
 		start();
 	}
@@ -35,7 +35,7 @@ public class ImageThread extends Thread {
 		try {
 		BufferedImage image = resize(url, new Dimension(32, 32));
 		ImageIO.write(image, "png", new File(ImageAssets.imgPath + file + ".png"));
-		} catch (Exception e) {}
+		} catch (Exception ignored) {}
 	}
 	
 	private BufferedImage resize(final URL url, final Dimension size) throws IOException{
