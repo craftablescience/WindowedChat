@@ -5,35 +5,18 @@ import io.github.craftablescience.windowedchat.gui.GuiOptionsNoChat;
 import io.github.craftablescience.windowedchat.helpers.ChatStyleBlock;
 import io.github.craftablescience.windowedchat.swing.ChatWindow;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiOptions;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.ThreadDownloadImageData;
-import net.minecraft.client.renderer.texture.DynamicTexture;
-import net.minecraft.client.renderer.texture.ITextureObject;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.gui.screen.SettingsScreen;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.ChatType;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent;
-import net.minecraftforge.fml.common.network.FMLNetworkEvent;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 
 public class WindowedChatEvents {
@@ -54,13 +37,13 @@ public class WindowedChatEvents {
     public void onRenderGameOverlayEvent(RenderGameOverlayEvent event) {
         // Fixes most recent message still displaying
         if (!ChatWindow.SETTING_MCCHATHISTORY)
-            Minecraft.getMinecraft().ingameGUI.getChatGUI().clearChatMessages(true);
+            Minecraft.getInstance().ingameGUI.getChatGUI().clearChatMessages(true);
     }
 
     @SubscribeEvent
     public void onGuiOpenEvent(GuiOpenEvent event) {
         if (event.getGui() == null) return;
-        if (event.getGui() instanceof GuiOptions) {
+        if (event.getGui() instanceof SettingsScreen) {
             event.setGui(new GuiOptionsNoChat());
         }
     }
@@ -178,7 +161,7 @@ public class WindowedChatEvents {
             }
         }
         if (!ChatWindow.SETTING_MCCHATHISTORY)
-            Minecraft.getMinecraft().ingameGUI.getChatGUI().clearChatMessages(true);
+            Minecraft.getInstance().ingameGUI.getChatGUI().clearChatMessages(true);
     }
 
     private ImageIcon loadImageFromStream(String path) {
@@ -192,8 +175,8 @@ public class WindowedChatEvents {
     }
 
     private boolean playerExists(String name) {
-        for (EntityPlayer player : Minecraft.getMinecraft().world.playerEntities)
-            if (player.getName().equals(name))
+        for (PlayerEntity player : Minecraft.getInstance().world.getPlayers())
+            if (player.getName().getString().equals(name))
                 return true;
         return false;
     }

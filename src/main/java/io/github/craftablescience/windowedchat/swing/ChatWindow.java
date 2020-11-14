@@ -2,17 +2,13 @@ package io.github.craftablescience.windowedchat.swing;
 
 import io.github.craftablescience.windowedchat.WindowedChat;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiConfirmOpenLink;
-import net.minecraft.client.gui.GuiYesNoCallback;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.event.ClickEvent;
-import org.lwjgl.opengl.Display;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
@@ -34,10 +30,11 @@ public class ChatWindow extends JFrame {
 
     public static boolean SETTING_MCCHATHISTORY = false;
     public static boolean SETTING_AUTOSCROLL = true;
+    public static boolean SETTING_MODCOMPAT = false;
 
 
     public ChatWindow() {
-        super(Display.getTitle() + " Chat Window");
+        super("Minecraft 1.16 Chat Window");
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.setAutoRequestFocus(false);
 
@@ -78,7 +75,7 @@ public class ChatWindow extends JFrame {
         this.textbox = new JTextField();
         this.textbox.addActionListener(e -> {
             if (this.textbox.getText().length() > 0) {
-                Minecraft.getMinecraft().player.sendChatMessage(this.textbox.getText());
+                Minecraft.getInstance().player.sendChatMessage(this.textbox.getText());
                 this.textbox.setText("");
             }
         });
@@ -162,7 +159,7 @@ public class ChatWindow extends JFrame {
         this.dmList.removeAll();
         DM_HASHMAP = new HashMap<>();
         if (loggedIn)
-            this.items.addElement(new JLabel("Logged in as " + Minecraft.getMinecraft().getSession().getProfile().getName()));
+            this.items.addElement(new JLabel("Logged in as " + Minecraft.getInstance().getSession().getProfile().getName()));
         else
             this.items.addElement(new JLabel("Started Windowed Chat"));
         this.items.addElement(new JLabel("-----------------------------------"));
@@ -243,7 +240,7 @@ public class ChatWindow extends JFrame {
         ClickEvent clickevent = component.getStyle().getClickEvent();
 
         if (clickevent.getAction() == ClickEvent.Action.OPEN_URL) {
-            if (!Minecraft.getMinecraft().gameSettings.chatLinks)
+            if (!Minecraft.getInstance().gameSettings.chatLinks)
                 return false;
             try {
                 URI uri = new URI(clickevent.getValue());
@@ -265,7 +262,7 @@ public class ChatWindow extends JFrame {
         } else if (clickevent.getAction() == ClickEvent.Action.SUGGEST_COMMAND) {
             this.textbox.setText(clickevent.getValue());
         } else if (clickevent.getAction() == ClickEvent.Action.RUN_COMMAND) {
-            Minecraft.getMinecraft().player.sendChatMessage(clickevent.getValue());
+            Minecraft.getInstance().player.sendChatMessage(clickevent.getValue());
         } else {
             WindowedChat.logger.error("Don't know how to handle {}", clickevent);
         }

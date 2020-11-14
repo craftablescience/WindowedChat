@@ -75,7 +75,7 @@ public class ChatDM extends JPanel {
         JTextField textbox = new JTextField();
         textbox.addActionListener(e -> {
             if (textbox.getText().length() > 0) {
-                Minecraft.getMinecraft().player.sendChatMessage("/msg " + player + " " + textbox.getText());
+                Minecraft.getInstance().player.sendChatMessage("/msg " + player + " " + textbox.getText());
                 textbox.setText("");
             }
         });

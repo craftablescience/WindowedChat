@@ -1,23 +1,22 @@
 package io.github.craftablescience.windowedchat.gui;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.*;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.client.settings.GameSettings;
-import net.minecraft.world.EnumDifficulty;
+import net.minecraft.client.gui.screen.ChatOptionsScreen;
+import net.minecraft.client.gui.screen.SettingsScreen;
+import net.minecraft.client.gui.widget.button.AbstractButton;
 
 
-public class GuiOptionsNoChat extends GuiOptions {
+public class GuiOptionsNoChat extends ChatOptionsScreen {
 
     public GuiOptionsNoChat() {
-        super(new GuiIngameMenu(), Minecraft.getMinecraft().gameSettings);
+        super(, Minecraft.getInstance().gameSettings);
     }
 
     @Override
-    public void initGui() {
-        super.initGui();
-        for (GuiButton button : this.buttonList)
-            if (button.id == 103)
+    public void init() {
+        super.init();
+        for (AbstractButton button : this.buttonList)
+            if (button.x == 103)
                 button.enabled = false;
     }
 }

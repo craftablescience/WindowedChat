@@ -1,0 +1,28 @@
+modLoader="javafml" #mandatory
+loaderVersion="[35,)" #mandatory
+license="All rights reserved"
+#issueTrackerURL="" #optional
+[[mods]] #mandatory
+modId="windowedchat" #mandatory
+version="${file.jarVersion}" #mandatory
+displayName="Windowed Chat" #mandatory
+#updateJSONURL="" #optional
+displayURL="" #optional
+logoFile="assets/windowedchat/textures/logo.png" #optional
+#credits="" #optional
+authors="craftablescience" #optional
+description='''
+Pops the chat into a new window.
+'''
+[[dependencies.windowedchat]]
+    modId="forge" #mandatory
+    mandatory=true #mandatory
+    versionRange="[35,)" #mandatory
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.windowedchat]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.4,1.17)"
+    ordering="NONE"
+    side="BOTH"
