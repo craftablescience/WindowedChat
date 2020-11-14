@@ -1,13 +1,14 @@
 package io.github.craftablescience.windowedchat.swing;
 
-import net.minecraft.util.text.ITextComponent;
+import javax.swing.JLabel;
 
-import javax.swing.*;
+import net.minecraft.util.text.ITextComponent;
 
 
 public class ChatLink extends JLabel {
 
-    private ITextComponent link;
+	private static final long serialVersionUID = -2146486386137706249L;
+	private ITextComponent link;
 
 
     public ChatLink(String name, ITextComponent link) {

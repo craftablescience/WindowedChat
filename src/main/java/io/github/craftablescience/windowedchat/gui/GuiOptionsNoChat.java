@@ -1,10 +1,9 @@
 package io.github.craftablescience.windowedchat.gui;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.*;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.client.settings.GameSettings;
-import net.minecraft.world.EnumDifficulty;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiIngameMenu;
+import net.minecraft.client.gui.GuiOptions;
 
 
 public class GuiOptionsNoChat extends GuiOptions {

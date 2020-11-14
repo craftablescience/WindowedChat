@@ -1,53 +1,38 @@
 package io.github.craftablescience.windowedchat.event;
 
+import javax.swing.ImageIcon;
+
 import io.github.craftablescience.windowedchat.WindowedChat;
 import io.github.craftablescience.windowedchat.gui.GuiOptionsNoChat;
 import io.github.craftablescience.windowedchat.helpers.ChatStyleBlock;
+import io.github.craftablescience.windowedchat.helpers.ImageAssets;
+import io.github.craftablescience.windowedchat.helpers.PlayerHelper;
 import io.github.craftablescience.windowedchat.swing.ChatWindow;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiOptions;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.ThreadDownloadImageData;
-import net.minecraft.client.renderer.texture.DynamicTexture;
-import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.ChatType;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 
 public class WindowedChatEvents {
+	
+	private ChatWindow chatWindow = WindowedChat.chatWindow;
 
     @SubscribeEvent
     public void onPlayerLogin(FMLNetworkEvent.ClientConnectedToServerEvent event) {
-        WindowedChat.chatWindow = new ChatWindow();
-        WindowedChat.chatWindow.activate(true);
+        chatWindow = new ChatWindow();
+        chatWindow.activate(true);
     }
 
     @SubscribeEvent
     public void onPlayerLogout(FMLNetworkEvent.ClientDisconnectionFromServerEvent event) {
-        WindowedChat.chatWindow.deactivate();
-        WindowedChat.chatWindow = null;
+    	chatWindow.deactivate();
+    	chatWindow = null;
     }
 
     @SubscribeEvent
@@ -69,12 +54,16 @@ public class WindowedChatEvents {
     public void onClientChatReceivedEvent(ClientChatReceivedEvent event) {
         ImageIcon icon = null;
 
+        String playerName = event.getMessage().getUnformattedText().split(" ")[0].replace("<", "").replace(">", "");
+        
+        WindowedChat.logger.info("Name: " + playerName);
+        
         if (event.getType() == ChatType.CHAT) {
-            icon = this.loadImageFromStream("assets/windowedchat/textures/steve.png");
+        	icon = PlayerHelper.loadImage(playerName);
         } else if (event.getType() == ChatType.GAME_INFO) {
-            icon = this.loadImageFromStream("assets/windowedchat/textures/info.png");
+            icon = ImageAssets.getTexture("gameinfo");
         } else if (event.getType() == ChatType.SYSTEM) {
-            icon = this.loadImageFromStream("assets/windowedchat/textures/system.png");
+            icon = ImageAssets.getTexture("system");
         }
 
         if (event.getMessage().getUnformattedText().trim().length() > 0) {
@@ -149,12 +138,13 @@ public class WindowedChatEvents {
                         output.append(new ChatStyleBlock(component, color, k, l, m, n, o).getHTMLMarkup());
                 }
                 output.append("</html>");
-                text = output.toString();
+               text = output.toString();
+
             }
             if (event.getMessage().getStyle().getClickEvent() == null)
-                WindowedChat.chatWindow.addItem(text, icon);
+            	chatWindow.addItem(text, icon);
             else
-                WindowedChat.chatWindow.addLinkItem(text, icon, event.getMessage());
+            	chatWindow.addLinkItem(text, icon, event.getMessage());
         }
         String text = event.getMessage().getUnformattedText();
         if (text.split(" ").length > 1 && playerExists(text.split(" ")[0]) && text.split(" ")[1].equals("whispers")) {
@@ -162,16 +152,16 @@ public class WindowedChatEvents {
             if (ChatWindow.DM_HASHMAP.containsKey(text.split(" ")[0])) {
                 ChatWindow.DM_HASHMAP.get(text.split(" ")[0]).addItemOther(message);
             } else {
-                WindowedChat.chatWindow.addDM(text.split(" ")[0], message, false);
+            	chatWindow.addDM(text.split(" ")[0], message, false);
             }
         }
-        if (text.startsWith("You whisper to ") && event.getType() == ChatType.SYSTEM) {
+        if (text.startsWith("You whispered to ") && event.getType() == ChatType.SYSTEM) {
             if (text.split(" ").length > 4 && playerExists(text.split(" ")[3].substring(0, text.split(" ")[3].length() - 1))) {
                 StringBuilder out = new StringBuilder();
                 for (int i = 4; i < text.split(" ").length; i++)
                     out.append(text.split(" ")[i]).append(" ");
                 if (!ChatWindow.DM_HASHMAP.containsKey(text.split(" ")[3].substring(0, text.split(" ")[3].length() - 1)))
-                    WindowedChat.chatWindow.addDM(text.split(" ")[3].substring(0, text.split(" ")[3].length() - 1), out.toString(), true);
+                	chatWindow.addDM(text.split(" ")[3].substring(0, text.split(" ")[3].length() - 1), out.toString(), true);
                 else {
                     ChatWindow.DM_HASHMAP.get(text.split(" ")[3].substring(0, text.split(" ")[3].length() - 1)).addItemSelf(out.toString());
                 }
@@ -179,16 +169,6 @@ public class WindowedChatEvents {
         }
         if (!ChatWindow.SETTING_MCCHATHISTORY)
             Minecraft.getMinecraft().ingameGUI.getChatGUI().clearChatMessages(true);
-    }
-
-    private ImageIcon loadImageFromStream(String path) {
-        ImageIcon icon = null;
-        try {
-            InputStream stream = getClass().getClassLoader().getResourceAsStream(path);
-            icon = new ImageIcon(ImageIO.read(stream));
-            stream.close();
-        } catch (IOException ignored) {}
-        return icon;
     }
 
     private boolean playerExists(String name) {
