@@ -23,6 +23,7 @@ public class WindowedChatEvents {
 	
 	private ChatWindow chatWindow = WindowedChat.chatWindow;
 
+
     @SubscribeEvent
     public void onPlayerLogin(FMLNetworkEvent.ClientConnectedToServerEvent event) {
         chatWindow = new ChatWindow();

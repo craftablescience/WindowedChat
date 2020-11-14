@@ -14,10 +14,12 @@ import javax.swing.ImageIcon;
 import io.github.craftablescience.windowedchat.WindowedChat;
 import io.github.craftablescience.windowedchat.thread.ImageThread;
 
+
 public class ImageAssets {
 
 	public static Map<String, ImageIcon> textures = new HashMap<>();
 	public static String imgPath = WindowedChat.imgPath;
+
 
 	public static void addTexture(String name, String path) {
 		name = name.toLowerCase();
@@ -67,6 +69,4 @@ public class ImageAssets {
 		File file = new File(imgPath + uuid + ".png");
 		return file.exists();
 	}
-	
-
 }

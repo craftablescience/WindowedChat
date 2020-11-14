@@ -11,10 +11,12 @@ import javax.imageio.ImageIO;
 
 import io.github.craftablescience.windowedchat.helpers.ImageAssets;
 
+
 public class ImageThread extends Thread {
 	
 	private String file;
 	private URL url;
+
 
 	public ImageThread(String file, URL url) {
 		this.file = file;
@@ -33,9 +35,7 @@ public class ImageThread extends Thread {
 		try {
 		BufferedImage image = resize(url, new Dimension(32, 32));
 		ImageIO.write(image, "png", new File(ImageAssets.imgPath + file + ".png"));
-		} catch (Exception e) {
-			
-		}
+		} catch (Exception e) {}
 	}
 	
 	private BufferedImage resize(final URL url, final Dimension size) throws IOException{
@@ -46,5 +46,4 @@ public class ImageThread extends Thread {
 	    g.dispose();
 	    return resized;
 	}
-	
 }

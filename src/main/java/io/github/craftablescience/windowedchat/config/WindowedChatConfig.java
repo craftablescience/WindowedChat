@@ -1,9 +1,11 @@
-package io.github.craftablescience.windowedchat;
+package io.github.craftablescience.windowedchat.config;
 
+import io.github.craftablescience.windowedchat.WindowedChat;
 import net.minecraftforge.common.config.Config;
 
+
 @Config(modid = WindowedChat.MODID)
-public class WDConfig {
+public class WindowedChatConfig {
 	
 	@Config.Name("url")
 	@Config.Comment("Defines the URL used to obtain a players Skin for rendering their Head in the Chat Window\nAcceptable Options:\n"
@@ -12,5 +14,4 @@ public class WDConfig {
 			+ "\tNone: steve")
 	@Config.RequiresWorldRestart
 	public static String avatarURL = "https://crafatar.com/renders/head/%uuid%?overlay?size=32";
-
 }
