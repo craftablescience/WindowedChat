@@ -1,4 +1,4 @@
-# WindowedChat
+# Windowed Chat
 Pops the Minecraft chat into a new window.
 
 ---
