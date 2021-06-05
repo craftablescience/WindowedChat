@@ -1,7 +1,7 @@
 modLoader="javafml" #mandatory
-loaderVersion="[35,)" #mandatory
+loaderVersion="[36,)" #mandatory
 license="All rights reserved"
-#issueTrackerURL="" #optional
+issueTrackerURL="https://github.com/craftablescience/WindowedChat/issues"
 [[mods]] #mandatory
 modId="windowedchat" #mandatory
 version="${file.jarVersion}" #mandatory
@@ -17,12 +17,12 @@ Pops the chat into a new window.
 [[dependencies.windowedchat]]
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[35,)" #mandatory
+    versionRange="[36,)" #mandatory
     ordering="NONE"
     side="BOTH"
 [[dependencies.windowedchat]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.4,1.17)"
+    versionRange="[1.16.5,1.17)"
     ordering="NONE"
     side="BOTH"

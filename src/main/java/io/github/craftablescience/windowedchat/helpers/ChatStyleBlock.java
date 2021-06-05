@@ -2,19 +2,18 @@ package io.github.craftablescience.windowedchat.helpers;
 
 import java.util.HashMap;
 
-
 public class ChatStyleBlock {
 
     public static final HashMap<Character,String> colorCodes;
     public static final HashMap<Character,String> formatCodes;
 
-    private String string;
-    private char color;
-    private boolean k;
-    private boolean l;
-    private boolean m;
-    private boolean n;
-    private boolean o;
+    private final String string;
+    private final char color;
+    private final boolean k;
+    private final boolean l;
+    private final boolean m;
+    private final boolean n;
+    private final boolean o;
 
 
     public ChatStyleBlock(String s, char color, boolean k, boolean l, boolean m, boolean n, boolean o) {
@@ -31,7 +30,7 @@ public class ChatStyleBlock {
         StringBuilder output = new StringBuilder();
 
         if (color != '\0')
-            output.append("<font " + colorCodes.get(color) + ">");
+            output.append("<font ").append(colorCodes.get(color)).append(">");
         if (l)
             output.append("<b>");
         if (m)
