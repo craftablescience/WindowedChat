@@ -14,7 +14,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = '2.0'
-group = 'io.github.craftablescience.windowedchat'
+group = 'me.belewis.windowedchat'
 archivesBaseName = 'windowedchat'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
@@ -86,6 +86,12 @@ jar {
 jar.finalizedBy('reobfJar') 
 // However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing
 //publish.dependsOn('reobfJar')
+
+task copyWindowedChatClient(dependsOn: ':windowedchatclient:build', type: Copy, group: 'build') {
+    from '../windowedchatclient/build/libs'
+    into 'src/main/resources'
+}
+project.tasks.getByName('compileJava').dependsOn copyWindowedChatClient
 
 publishing {
     publications {

@@ -1,0 +1,3 @@
+rootProject.name = 'WindowedChat'
+include 'windowedchat'
+include 'windowedchatclient'

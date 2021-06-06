@@ -1,6 +1,6 @@
-package io.github.craftablescience.windowedchat;
+package me.belewis.windowedchat;
 
-import io.github.craftablescience.windowedchat.event.WindowedChatEvents;
+import me.belewis.windowedchat.events.WindowedChatEvents;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.LogManager;

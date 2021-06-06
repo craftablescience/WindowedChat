@@ -1,4 +1,4 @@
-package io.github.craftablescience.windowedchat.helpers;
+package me.belewis.windowedchat.helpers;
 
 import java.util.HashMap;
 

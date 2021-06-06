@@ -1,4 +1,4 @@
-package io.github.craftablescience.windowedchat.event;
+package me.belewis.windowedchat.events;
 
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
