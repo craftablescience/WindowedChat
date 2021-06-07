@@ -13,7 +13,6 @@ public class WindowedChat {
     public static final String VERSION = "2.0";
     public static final Logger LOGGER = LogManager.getLogger();
 
-
     public WindowedChat() {
         MinecraftForge.EVENT_BUS.register(WindowedChatEvents.class);
     }

@@ -1,10 +1,31 @@
-apply plugin: 'java'
+buildscript {
+    repositories {
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
+    }
+    dependencies {
+        classpath 'com.itiviti.gradle:gradle-dotnet-plugin:1.6.1'
+    }
+}
+apply plugin: 'com.itiviti.dotnet'
 
 version = '2.0'
 
-jar {
-    archiveName 'client.jar'
-    manifest {
-        attributes 'Main-Class': 'me.belewis.windowedchatclient.ChatWindow'
+dotnet {
+    dotnetExecutable = 'C:\\Program Files\\dotnet\\dotnet.exe'
+    solution = 'windowedchatclient.sln'
+    configuration = 'Release'
+    verbosity = 'Normal'
+
+    restore {
+        noCache = true
+        force = false
+        beforeBuild = false
+    }
+
+    build {
+        version = version
+        packageVersion = version
     }
 }
