@@ -17,12 +17,12 @@ namespace windowedchatclient.Views.TitleBars
             else
             {
                 Button minimizeButton = this.FindControl<Button>("MinimizeButton");
-                Image windowIcon = this.FindControl<Image>("WindowIcon");
-
                 minimizeButton.Click += MinimizeWindow!;
+                
+#if DEBUG
+                Image windowIcon = this.FindControl<Image>("WindowIcon");
                 windowIcon.DoubleTapped += CloseWindow!;
-
-                //SubscribeToWindowState();
+#endif
             }
         }
 
@@ -37,17 +37,6 @@ namespace windowedchatclient.Views.TitleBars
             Window hostWindow = (Window) VisualRoot;
             hostWindow.WindowState = WindowState.Minimized;
         }
-
-        /*private async void SubscribeToWindowState()
-        {
-            Window hostWindow = (Window) VisualRoot;
-
-            while (hostWindow == null)
-            {
-                hostWindow = (Window) VisualRoot;
-                await Task.Delay(50);
-            }
-        }*/
 
         private void InitializeComponent()
         {
