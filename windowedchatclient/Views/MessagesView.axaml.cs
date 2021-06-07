@@ -3,14 +3,11 @@ using Avalonia.Markup.Xaml;
 
 namespace windowedchatclient.Views
 {
-    public class MainWindow : Window
+    public class MessagesView : UserControl
     {
-        public MainWindow()
+        public MessagesView()
         {
             InitializeComponent();
-#if DEBUG
-            AttachDevTools();
-#endif
         }
 
         private void InitializeComponent()

@@ -10,13 +10,21 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
     <ItemGroup>
-        <Folder Include="Models\"/>
-        <AvaloniaResource Include="Assets\**"/>
+        <Folder Include="Models\" />
+        <AvaloniaResource Include="Assets\**" />
+        <None Remove="Assets\logo.png" />
+        <AvaloniaResource Include="Assets\logo.png" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="0.10.3"/>
-        <PackageReference Include="Avalonia.Desktop" Version="0.10.3"/>
-        <PackageReference Include="Avalonia.Diagnostics" Version="0.10.3"/>
-        <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.3"/>
+        <PackageReference Include="Avalonia" Version="0.10.3" />
+        <PackageReference Include="Avalonia.Desktop" Version="0.10.3" />
+        <PackageReference Include="Avalonia.Diagnostics" Version="0.10.3" />
+        <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.3" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Update="Views\TitleBars\WindowsTitleBar.axaml.cs">
+        <DependentUpon>WindowsTitleBar.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 </Project>

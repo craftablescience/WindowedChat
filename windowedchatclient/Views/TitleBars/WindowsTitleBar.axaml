@@ -1,0 +1,67 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="500"
+             x:Class="windowedchatclient.Views.TitleBars.WindowsTitleBar"
+             DockPanel.Dock="Top">
+  <StackPanel>
+    <Grid>
+      <DockPanel Background="#404040"
+                 IsHitTestVisible="False"
+                 Name="TitleBarBackground"></DockPanel>
+      <DockPanel Name="TitleBar">
+        <StackPanel Orientation="Horizontal"
+                    DockPanel.Dock="Left"
+                    Spacing="0">
+          <Image Source="/Assets/logo.ico"
+                 Height="20"
+                 Width="20"
+                 VerticalAlignment="Center"
+                 Margin="6,0,1,0"
+                 Name="WindowIcon"></Image>
+          <NativeMenuBar DockPanel.Dock="Top"
+                         Width="6"
+                         HorizontalAlignment="Left"
+                         Name="SeamlessMenuBar"></NativeMenuBar>
+          <TextBlock Text="Minecraft Chat"
+                     FontSize="12"
+                     Foreground="White"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     IsHitTestVisible="False"
+                     Name="SystemChromeTitle"></TextBlock>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Spacing="0">
+          <Button Width="46"
+                  Height="30"
+                  HorizontalContentAlignment="Center"
+                  VerticalAlignment="Center"
+                  BorderThickness="0"
+                  Name="MinimizeButton"
+                  ToolTip.Tip="Minimize">
+            <Button.Resources>
+              <CornerRadius x:Key="ControlCornerRadius">0</CornerRadius>
+            </Button.Resources>
+            <Button.Styles>
+              <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="#44AAAAAA"/>
+              </Style>
+              <Style Selector="Button:not(:pointerover) /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="Transparent"/>
+              </Style>
+            </Button.Styles>
+            <Path Margin="10,9,10,0"
+                  Stretch="Uniform"
+                  Fill="{DynamicResource SystemControlForegroundBaseHighBrush}"
+                  Data="m0 0H64V16H0V0"></Path>
+          </Button>
+        </StackPanel>
+      </DockPanel>
+    </Grid>
+    <NativeMenuBar HorizontalAlignment="Left"
+                   Name="DefaultMenuBar"></NativeMenuBar>
+  </StackPanel>
+</UserControl>
