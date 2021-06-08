@@ -1,6 +1,6 @@
 modLoader="javafml" #mandatory
 loaderVersion="[36,)" #mandatory
-license="All rights reserved"
+license="GPLv3"
 issueTrackerURL="https://github.com/craftablescience/WindowedChat/issues"
 [[mods]] #mandatory
 modId="windowedchat" #mandatory
