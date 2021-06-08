@@ -40,6 +40,29 @@
                   HorizontalContentAlignment="Center"
                   VerticalAlignment="Center"
                   BorderThickness="0"
+                  Name="SettingsButton"
+                  ToolTip.Tip="Settings">
+            <Button.Resources>
+              <CornerRadius x:Key="ControlCornerRadius">0</CornerRadius>
+            </Button.Resources>
+            <Button.Styles>
+              <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="#44AAAAAA"/>
+              </Style>
+              <Style Selector="Button:not(:pointerover) /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="Transparent"/>
+              </Style>
+            </Button.Styles>
+            <Path Margin="0,2,0,0"
+                  Stretch="Uniform"
+                  Fill="{DynamicResource SystemControlForegroundBaseHighBrush}"
+                  Data="M283.07 168.875l-17.106-9.876c.461-4.279.704-8.622.704-13.02s-.243-8.742-.704-13.021l17.106-9.876c3.655-2.11 6.27-5.519 7.363-9.598c1.092-4.078.531-8.338-1.58-11.994l-32.908-57.001c-2.816-4.878-8.067-7.907-13.705-7.907c-2.759 0-5.485.734-7.887 2.12l-17.155 9.905c-6.973-5.114-14.51-9.497-22.503-13.037V15.807C194.695 7.091 187.604 0 178.889 0h-65.82c-8.716 0-15.807 7.091-15.807 15.807V35.57c-7.993 3.54-15.531 7.924-22.503 13.038l-17.155-9.904c-2.401-1.387-5.128-2.121-7.887-2.121c-5.638 0-10.889 3.029-13.705 7.907L3.103 101.49c-2.111 3.655-2.672 7.916-1.58 11.994c1.094 4.079 3.708 7.487 7.363 9.598l17.106 9.876c-.461 4.279-.704 8.622-.704 13.021s.243 8.742.704 13.02l-17.106 9.876c-3.655 2.11-6.269 5.518-7.363 9.598c-1.092 4.078-.531 8.339 1.58 11.994l32.908 57.001c2.816 4.878 8.067 7.907 13.705 7.907c2.759 0 5.485-.733 7.887-2.12l17.155-9.905c6.973 5.114 14.51 9.497 22.503 13.037v19.764c0 4.222 1.644 8.19 4.631 11.176c2.985 2.985 6.955 4.63 11.176 4.63h65.82c8.715 0 15.807-7.09 15.807-15.806v-19.764c7.992-3.541 15.53-7.923 22.502-13.037l17.156 9.904c2.401 1.387 5.128 2.12 7.887 2.12c5.638 0 10.889-3.029 13.705-7.907l32.908-57.001c2.111-3.655 2.672-7.916 1.58-11.994C289.34 174.393 286.726 170.985 283.07 168.875zM145.979 201.668c-30.756 0-55.689-24.934-55.689-55.689s24.934-55.689 55.689-55.689s55.689 24.934 55.689 55.689S176.734 201.668 145.979 201.668z"></Path>
+          </Button>
+          <Button Width="46"
+                  Height="30"
+                  HorizontalContentAlignment="Center"
+                  VerticalAlignment="Center"
+                  BorderThickness="0"
                   Name="MinimizeButton"
                   ToolTip.Tip="Minimize">
             <Button.Resources>
