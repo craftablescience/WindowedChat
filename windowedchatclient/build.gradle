@@ -10,22 +10,15 @@ buildscript {
 }
 apply plugin: 'com.itiviti.dotnet'
 
-version = '2.0'
-
 dotnet {
-    dotnetExecutable = 'C:\\Program Files\\dotnet\\dotnet.exe'
     solution = 'windowedchatclient.sln'
     configuration = 'Release'
     verbosity = 'Normal'
-
-    restore {
-        noCache = true
-        force = false
-        beforeBuild = false
-    }
+    version = '2.0'
 
     build {
         version = version
+        projectVersion = version
         packageVersion = version
     }
 }

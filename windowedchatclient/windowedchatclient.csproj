@@ -6,6 +6,8 @@
         <RuntimeIdentifier>win-x64</RuntimeIdentifier>
         <PublishTrimmed>true</PublishTrimmed>
         <PublishReadyToRun>true</PublishReadyToRun>
+        <Version>2.0.0</Version>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <DebugType>embedded</DebugType>
         <Nullable>enable</Nullable>
     </PropertyGroup>
@@ -18,5 +20,17 @@
         <PackageReference Include="Avalonia.Desktop" Version="0.10.3" />
         <PackageReference Include="Avalonia.Diagnostics" Version="0.10.3" />
         <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.3" />
+    </ItemGroup>
+    <ItemGroup>
+      <AvaloniaXaml Remove="build\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Remove="build\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Remove="build\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="build\**" />
     </ItemGroup>
 </Project>

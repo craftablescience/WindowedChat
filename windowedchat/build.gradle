@@ -87,9 +87,11 @@ jar.finalizedBy('reobfJar')
 // However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing
 //publish.dependsOn('reobfJar')
 
-task copyWindowedChatClient(/*dependsOn: ':windowedchatclient:dotnetBuild',*/ type: Copy, group: 'build') {
+task copyWindowedChatClient(dependsOn: ':windowedchatclient:dotnetBuild', type: Zip, group: 'build') {
     from '../windowedchatclient/bin/Release/net5.0/win-x64'
-    into 'src/main/resources/windowedchatclient'
+    include '**/*'
+    archiveName 'windowedchatclient.zip'
+    destinationDir(file('src/main/resources'))
 }
 project.tasks.getByName('compileJava').dependsOn copyWindowedChatClient
 
