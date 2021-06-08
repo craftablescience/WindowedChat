@@ -1,14 +1,32 @@
+using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Avalonia.Threading;
+using DynamicData.Binding;
 using windowedchatclient.Models;
 
 namespace windowedchatclient.Services
 {
     public class MessagesService
     {
-        public IEnumerable<ChatMessage> GetAllMessages() => new[]
+        private readonly List<ChatMessage> _messages;
+
+        public MessagesService()
         {
-            new ChatMessage { Message = "Hello world", Sender = "Author" },
-            new ChatMessage { Message = "Second message", Sender = "Author2" }
-        };
+            _messages = new List<ChatMessage>();
+            AddMessage("Connected to Minecraft", "server-name-here");
+        }
+
+        public IEnumerable<ChatMessage> GetAllMessages() => _messages;
+
+        public void AddMessage(string sender, string message)
+        {
+            _messages.Add(new ChatMessage
+            {
+                Sender = sender,
+                Message = message
+            });
+        }
     }
 }

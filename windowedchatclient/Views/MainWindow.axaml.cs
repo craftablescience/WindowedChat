@@ -1,5 +1,7 @@
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
 
 namespace windowedchatclient.Views
 {
@@ -9,7 +11,7 @@ namespace windowedchatclient.Views
         {
             InitializeComponent();
 #if DEBUG
-            AttachDevTools();
+            this.AttachDevTools();
 #endif
         }
 
